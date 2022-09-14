@@ -3,7 +3,7 @@
 <br>
 
 This example deploys a very simple Dream
-[application](https://github.com/aantron/dream/tree/master/example/z-fly)
+[application](https://github.com/aantron/dream/blob/master/example/z-fly/app.ml)
 to [Fly.io](https://www.fly.io/), a hosting platform that scales and smartly
 moves your servers closer to your users. A low-usage app can be hosted for
 [free](https://fly.io/docs/about/pricing/#free-tier). Fly.io offers
@@ -32,15 +32,11 @@ services:
     ports:
       - "8080:8080"
     restart: always
-    logging:
-      driver: ${LOGGING_DRIVER:-json-file}
 ```
 
 The setup can be run locally or on any server provider.
 
-The
-[`Dockerfile`](https://github.com/aantron/dream/blob/master/example/z-docker-esy/Dockerfile)
-has two stages: one for building our application, and one for the runtime that
+The [`Dockerfile`] has two stages: One for building our application, and one for the runtime that
 only contains the final binary and its run-time dependencies.
 
 <br>
@@ -71,13 +67,6 @@ With Docker:
 2. Ensure Docker is running, then run `docker compose up`. Docker should build,
    cache, and serve your app at `localhost:8080`.
 
-Without Docker:
+With just Dune:
 
-1. Make sure you have [esy](https://esy.sh) installed.
-2. Run `esy` to install all dependencies.
-3. To start your app, run `esy start`. This is an aliased command set up inside
-   `esy.json`.
-
-<br>
-
-[Up to the example index](../#deploying)
+1. `dune exec bin/run.exe`
